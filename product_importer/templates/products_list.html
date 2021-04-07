@@ -1,0 +1,58 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<table class="table table-bordered">
+  <thead>
+    <tr>
+      <th>Name</th>
+      <th>SKU</th>
+      <th>Description</th>
+    </tr>
+  </thead>
+  <tbody>
+    {% for product in products %}
+      <tr>
+        <td>{{ product.name }}</td>
+        <td>{{ product.sku }}</td>
+        <td>{{ product.description }}</td>
+      </tr>
+    {% endfor %}
+  </tbody>
+</table>
+
+<form type="get" action="." style="margin: 0">
+    <input id="search_key" type="text" name="search_key" value="{{search_key}}"  placeholder="Search Product..." >
+    <input id="is_active" type="checkbox" name="is_active" {% if is_active %} checked {% endif %} value="True"><label>Active</label> 
+    <button id="search_submit" type="submit" >Submit</button>
+</form>
+
+{% if is_paginated %}
+  <ul class="pagination">
+    {% if page_obj.has_previous %}
+      <li><a href="javascript:document.location.href=getUrl({{ page_obj.previous_page_number }})">&laquo;</a></li>
+    {% else %}
+      <li class="disabled"><span>&laquo;</span></li>
+    {% endif %}
+    <li class="active"><span>{{page_obj}} <span class="sr-only">(current)</span></span></li>
+    {% if page_obj.has_next %}
+      <li><a href="javascript:document.location.href=getUrl({{ page_obj.next_page_number }})">&raquo;</a></li>
+    {% else %}
+      <li class="disabled"><span>&raquo;</span></li>
+    {% endif %}
+  </ul>
+{% endif %}
+
+
+
+<script type="text/javascript">
+    function getUrl(pageNumber) {
+        search_key = document.getElementById("search_key").value
+        is_active = document.getElementById("is_active").checked
+        url = "?page=" + pageNumber
+        url = search_key ? url + "&search_key=" + search_key : url
+        url = is_active ? url + "&is_active=True": url
+        return url
+    }
+</script>
+
+{% endblock %}
