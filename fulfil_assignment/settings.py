@@ -87,19 +87,33 @@ WSGI_APPLICATION = 'fulfil_assignment.wsgi.application'
 #     }
 # }
 
+
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.mysql',
-        'NAME': 'assignment',
-        'USER': 'root',
-        'PASSWORD': '',
-        'HOST': '127.0.0.1',
-        'PORT': '3306',
-        'OPTIONS': {
-            'sql_mode': 'traditional',
-        }
+        'ENGINE' : 'django_mongodb_engine',
+        'NAME': 'fulfil',
+        'USER': 'username',
+        'PASSWORD': 'password',
+        'HOST': 'localhost',
+        'PORT': '',
     }
 }
+
+
+
+# DATABASES = {
+#     'default': {
+#         'ENGINE': 'django.db.backends.mysql',
+#         'NAME': 'assignment',
+#         'USER': 'root',
+#         'PASSWORD': '',
+#         'HOST': '127.0.0.1',
+#         'PORT': '3306',
+#         'OPTIONS': {
+#             'sql_mode': 'traditional',
+#         }
+#     }
+# }
 
 
 
