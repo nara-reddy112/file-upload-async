@@ -3,7 +3,7 @@ Import products from a CSV file into database, with updates for existing records
 
 ## Specification
 #### STORY 1: 
-As a user, I should be able to upload a large CSV file of 500K products ( see here ) to the app. If there are existing
+As a user, I should be able to upload a large CSV file OR large text files ( see here ) to the app. If there are existing
 duplicates, it should overwrite the data. Deduplication can be done using the SKU of the product. SKU is case
 insensitive. Though not in the CSV file, some products should be active and others should be inactive. The SKU is
 expected to be unique.
@@ -33,7 +33,7 @@ As a user, it should be possible to delete all existing records and start a fres
 4. Preprocess CSV to check for duplicates ad existing records
 
 ## WorkFlow
-1. User uploads a CSV file
+1. User uploads a CSV file OR text file
 2. File is uploaded into an S3 bucket and the url is POSTed to view
 3. The view calls the import_data function asynchronously
 4. The import_data function loads the file from S3 into tmp/
